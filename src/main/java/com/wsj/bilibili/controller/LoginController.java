@@ -33,9 +33,9 @@ public class LoginController {
         if (!StringUtils.isEmpty(username) && "123456".equalsIgnoreCase(password)){
             session.setAttribute("loginUser",username);
             return "redirect:/main";
-        } else {
-            model.addAttribute("msg","账号或密码错误");
         }
+
+        model.addAttribute("msg","账号或密码错误");
         return "login/login";
     }
 }
