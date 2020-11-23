@@ -24,6 +24,8 @@ public class WebMVCConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("login/login");
         registry.addViewController("/login").setViewName("login/login");
         registry.addViewController("/login.html").setViewName("login/login");
+        registry.addViewController("/forgot-password").setViewName("login/forgot-password");
+        registry.addViewController("/signup").setViewName("login/signup");
         registry.addViewController("/main").setViewName("index");
         registry.addViewController("/welcome.html").setViewName("welcome");
         registry.addViewController("/goodslist.html").setViewName("goodslist");
@@ -34,7 +36,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInceptorConfig()).addPathPatterns("/**")
-                .excludePathPatterns("/","/login","/login.html","/user/login","/welcome.html",
+                .excludePathPatterns("/","/login","/login.html","/user/login","/forgot-password", "/signup", "/welcome.html",
                         "/css/**","/fonts/**","/images/**","/js/**","/lib/**");
     }
 }
