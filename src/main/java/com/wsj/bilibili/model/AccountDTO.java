@@ -16,7 +16,6 @@ public class AccountDTO {
     private Integer id;
     private String username;
     private String password;
-    private Integer gender;
     private String email;
     private String phone;
 }
