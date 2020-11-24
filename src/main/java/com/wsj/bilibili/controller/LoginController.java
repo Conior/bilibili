@@ -33,7 +33,7 @@ public class LoginController {
             String userName = username.trim();
             String passWord = password.trim();
 
-            Integer account = accountService.addAccount(new AccountDTO(null, userName, passWord, null, null, null));
+            Integer account = accountService.getAccount(new AccountDTO(null, userName, passWord, null, null, null));
             if (null != account && 0 != account) {
                 session.setAttribute("loginUser", username);
                 return "redirect:/main";
