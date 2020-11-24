@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <div class="d-flex">
                                         <label>[[#{login.password}]]</label>
-                                        <span class="ml-auto"><a th:href="@{forgot-password}" th:text="#{login.forget}"></a></span>
+                                        <span class="ml-auto"><a th:href="@{/forgot-password}" th:text="#{login.forget}"></a></span>
                                     </div>
 
                                     <div class="input-group input-group--inline">
@@ -62,15 +62,15 @@
 
                 <div class="d-flex justify-content-center">
                     <span class="mr-2" th:text="#{login.noaccount}"></span>
-                    <a th:href="@{signup}" th:text="#{login.signup}"></a>
+                    <a th:href="@{/signup}" th:text="#{login.signup}"></a>
                 </div>
 
                 <!-- 多语言 -->
                 <br/>
                 <div class="d-flex justify-content-center">
-                    <a id="zh_CN" th:href="@{login(language='zh_CN')}" class="ml-auto">中文</a>
+                    <a id="zh_CN" th:href="@{/login(language='zh_CN')}" class="ml-auto">中文</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a id="en_US" th:href="@{login(language='en_US')}" class="ml-auto">English</a>
+                    <a id="en_US" th:href="@{/login(language='en_US')}" class="ml-auto">English</a>
                 </div>
             </div>
 
