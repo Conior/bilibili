@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wsj.bilibili.mapper.UserMapper">
+    <select id="queryAllUser" resultType="UserDTO">
+        SELECT * FROM tbl_user where is_delete = 0
+    </select>
+
+    <select id="queryUserById" parameterType="int" resultType="UserDTO">
+        SELECT * FROM tbl_user where id = #{id}
+    </select>
+
+    <insert id="insertUser" parameterType="UserDTO">
+        insert into tbl_user (user_name,pass_word,email,phone,birthday,address,details)
+        values (#{username},#{password},#{email},#{phone},#{birthday},#{address},#{details})
+    </insert>
+
+    <update id="updateUserById" parameterType="UserDTO">
+        update tbl_user set
+            username = #{user_name},
+            password = #{pass_word},
+            email = #{email},
+            phone = #{phone},
+            gender = #{gender},
+            birthday = #{birthday},
+            address = #{address},
+            is_delete = #{is_delete},
+            details = #{details}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUserById" parameterType="int">
+        delete from tbl_user where id = #{id}
+    </delete>
+</mapper>

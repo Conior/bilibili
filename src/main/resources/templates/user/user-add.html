@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <link rel="stylesheet" th:href="@{/css/font.css}">
     <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
     <script type="text/javascript" th:src="@{/js/laydate.js}"></script>
@@ -40,7 +41,7 @@
 <body>
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form" action="">
+        <form class="layui-form" th:action="@{/user/add_user}" method="post">
             <div class="layui-form-item">
                 <label class="layui-form-label layui-required">用户名</label>
                 <div class="layui-input-block">
@@ -72,7 +73,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">生  日</label>
                 <div class="layui-input-block">
-                    <input type="text" class="layui-input" id="birthday" placeholder="请选择生日" autocomplete="off">
+                    <input type="text" class="layui-input" name="birthday" id="birthday" placeholder="请选择生日" autocomplete="off">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -109,12 +110,12 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">详  情</label>
                 <div class="layui-input-block">
-                    <textarea name="desc" placeholder="请输入详情" class="layui-textarea"></textarea>
+                    <textarea name="details" placeholder="请输入详情" class="layui-textarea"></textarea>
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo" type="submit" onclick="return accountCheck()">提交</button>
+                    <button class="layui-btn" type="submit" onclick="return accountCheck()">提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
@@ -123,6 +124,7 @@
 </div>
 
 <script>
+
     // 日期控件
     layui.use('laydate', function(){
         var laydate = layui.laydate;
@@ -132,6 +134,18 @@
             elem: '#birthday' //指定元素
         });
 
+    });
+</script>
+
+<script type="text/javascript"  th:inline="javascript">
+    // th:inline="javascript" 必须写
+    $(function(){
+        var msg =  [[${msg}]]; //官方写法
+        if("fail" == msg){
+            alerMsg("fail", "保存失败");
+        } else if("success" == msg){
+            alerMsg("success", "保存成功")
+        }
     });
 </script>
 

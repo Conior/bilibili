@@ -7,6 +7,29 @@ $(function () {
 });
 
 
+function alerMsg(opeStatus, msg) {
+    layui.use("layer",function() {
+        var layer = layui.layer;  //layer初始化
+
+        if("success" == opeStatus){
+            layer.open({
+                title: '提示',
+                content: msg,
+                icon: 1
+            });
+        }
+
+        if("fail" == opeStatus){
+            layer.open({
+                title: '提示',
+                content: msg,
+                icon: 2
+            });
+        }
+    });
+}
+
+
 
 // 账号校验
 function accountCheck(){
