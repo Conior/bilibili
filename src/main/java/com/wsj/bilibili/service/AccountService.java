@@ -11,16 +11,10 @@ import com.wsj.bilibili.model.AccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class AccountService {
     @Autowired
     AccountMapper accountMapper;
-
-    public List<AccountDTO> getAllAccount() {
-        return accountMapper.queryAllAccount();
-    }
 
     public Integer getAccount(AccountDTO accountDTO) {
         return accountMapper.queryAccount(accountDTO);

@@ -18,4 +18,5 @@ public class AccountDTO {
     private String password;
     private String email;
     private String phone;
+    private Integer isDelete;
 }

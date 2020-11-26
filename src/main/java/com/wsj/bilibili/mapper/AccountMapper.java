@@ -15,8 +15,6 @@ import java.util.List;
 @Repository
 public interface AccountMapper {
 
-    List<AccountDTO> queryAllAccount();
-
     Integer queryAccount(AccountDTO accountDTO);
 
     Integer insertAccount(AccountDTO accountDTO);

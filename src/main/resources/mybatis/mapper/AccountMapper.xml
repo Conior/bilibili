@@ -5,20 +5,20 @@
 
 <mapper namespace="com.wsj.bilibili.mapper.AccountMapper">
     <select id="queryAllAccount" resultType="AccountDTO">
-        SELECT * FROM tbl_account
+        SELECT * FROM tbl_user where is_delete = 0
     </select>
 
     <select id="queryAccount" parameterType="AccountDTO" resultType="int">
-        SELECT * FROM tbl_account where user_name = #{username} and pass_word = #{password}
+        SELECT * FROM tbl_user where user_name = #{username} and pass_word = #{password} and is_delete = 0
     </select>
 
     <insert id="insertAccount" parameterType="AccountDTO">
-        insert into tbl_account (user_name,pass_word,email,phone)
+        insert into tbl_user (user_name,pass_word,email,phone)
         values (#{username},#{password},#{email},#{phone})
     </insert>
 
     <update id="updateAccountById" parameterType="AccountDTO">
-        update tbl_account set
+        update tbl_user set
             username = #{user_name},
             password = #{pass_word},
             email = #{email},
@@ -27,6 +27,6 @@
     </update>
 
     <delete id="deleteAccountById" parameterType="int">
-        delete from tbl_account where id = #{id}
+        delete from tbl_user where id = #{id}
     </delete>
 </mapper>

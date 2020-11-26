@@ -33,7 +33,7 @@ public class LoginController {
             String userName = username.trim();
             String passWord = password.trim();
 
-            Integer account = accountService.getAccount(new AccountDTO(null, userName, passWord, null, null));
+            Integer account = accountService.getAccount(new AccountDTO(null, userName, passWord, null, null, 0));
             if (null != account && 0 != account) {
                 session.setAttribute("loginUser", username);
                 return "redirect:/main";
@@ -51,7 +51,7 @@ public class LoginController {
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
 
-        Integer account = accountService.addAccount(new AccountDTO(null, username, password, email, phone));
+        Integer account = accountService.addAccount(new AccountDTO(null, username, password, email, phone, 0));
         if (null != account && 0 != account) {
             session.setAttribute("loginUser", username);
             return "redirect:/main";
