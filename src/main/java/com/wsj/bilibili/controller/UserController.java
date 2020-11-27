@@ -86,4 +86,22 @@ public class UserController {
         }
         return "/user/user-add";
     }
+
+    @RequestMapping("deleteUser")
+    @ResponseBody
+    public Map<String, Object> deleteUser(HttpServletRequest request){
+        Map<String, Object> dataMap = new HashMap<>();
+
+        String userId = request.getParameter("userId");
+        Integer deleteCount = userService.deleteUserById(Integer.parseInt(userId));
+        if (0 == deleteCount){
+            dataMap.put("code",204);
+            dataMap.put("msg","未查找到该数据");
+        } else {
+            dataMap.put("code",200);
+            dataMap.put("msg","删除成功");
+        }
+
+        return dataMap;
+    }
 }
