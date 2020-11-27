@@ -19,6 +19,10 @@ public class UserService {
     @Autowired
     UserMapper userMapper;
 
+    public Integer getUserCount(){
+        return userMapper.queryUserCount();
+    }
+
     public List<UserDTO> getAllUser() {
         return userMapper.queryAllUser();
     }

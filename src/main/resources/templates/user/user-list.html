@@ -51,79 +51,72 @@
                     </button>
                 </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
-                    <table class="layui-table layui-form">
-                        <thead>
-                        <tr>
-                            <th>
-                                <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
-                            </th>
-                            <th>
-                                商品类型名称
-                            </th>
-                            <th>
-                                属性分组
-                            </th>
-                            <th>
-                                属性数
-                            </th>
-                            <th>
-                                状态
-                            </th>
-                            <th>
-                                操作
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="id" value="1" lay-skin="primary">
-                            </td>
-                            <td>
-                                诺基亚
-                            </td>
+                    <!--                    <table class="layui-table layui-form">-->
+                    <!--                        <thead>-->
+                    <!--                        <tr>-->
+                    <!--                            <th><input type="checkbox" lay-filter="checkall" name="" lay-skin="primary"></th>-->
+                    <!--                            <th>用户名</th>-->
+                    <!--                            <th>电话</th>-->
+                    <!--                            <th>邮箱</th>-->
+                    <!--                            <th>性别</th>-->
+                    <!--                            <th>生日</th>-->
+                    <!--                            <th>地址</th>-->
+                    <!--                            <th>是否失效</th>-->
+                    <!--                            <th>操作</th>-->
+                    <!--                        </tr>-->
+                    <!--                        </thead>-->
+                    <!--                        <tbody>-->
+                    <!--                        <tr th:each="user:${allUser}">-->
+                    <!--                            <td><input type="checkbox" name="id" th:value="${user.getId()}" lay-skin="primary"></td>-->
+                    <!--                            <td th:text="${user.getUsername()}"></td>-->
+                    <!--                            <td th:text="${user.getPhone()}"></td>-->
+                    <!--                            <td th:text="${user.getEmail()}"></td>-->
+                    <!--                            <td th:text="${user.getSex()==1?'男':'女'}"></td>-->
+                    <!--                            <td th:text="${user.getBirthday()}"></td>-->
+                    <!--                            <td th:text="${user.getAddress()}"></td>-->
+                    <!--                            <td><input type="checkbox" name="isDelete" th:checked="${user.getIsDelete() == 1}" lay-skin="switch" disabled="disabled"></td>-->
+                    <!--                            <td>-->
+                    <!--                                <button class="layui-btn layui-btn-xs" lay-event="edit">修改</button>-->
+                    <!--                                <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>-->
+                    <!--                            </td>-->
+                    <!--&lt;!&ndash;                            <td class="td-status"><span class="layui-btn layui-btn-normal "> 显示 </span>&ndash;&gt;-->
+                    <!--                            </td>-->
+                    <!--&lt;!&ndash;                            <td class="td-manage ">&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                <a style="text-decoration:none" href="javascript:;"&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                   onclick="xadmin.add_tab('属性列表','brand.html')">&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                    <i class="layui-icon">属性列表</i>&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                <a title="编辑" href="javascript:;"&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                   onclick="xadmin.open('编辑','commodity-type-add.html','800','510','1')"&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                   class="ml-5" style="text-decoration:none">&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                    <i class="layui-icon">&#xe642;</i>&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                </a>&ndash;&gt;-->
 
-                            <td>
-                                公司网站：http://www.nokia.com.cn/ 客服电话：...
-                            </td>
-                            <td>
-                                10
-                            </td>
-                            <td class="td-status"><span class="layui-btn layui-btn-normal "> 显示 </span>
-                            </td>
-                            <td class="td-manage ">
-                                <a style="text-decoration:none" href="javascript:;"
-                                   onclick="xadmin.add_tab('属性列表','brand.html')">
-                                    <i class="layui-icon">属性列表</i>
-                                </a>
-                                <a title="编辑" href="javascript:;"
-                                   onclick="xadmin.open('编辑','commodity-type-add.html','800','510','1')"
-                                   class="ml-5" style="text-decoration:none">
-                                    <i class="layui-icon">&#xe642;</i>
-                                </a>
+                    <!--&lt;!&ndash;                                <a title="删除" href="javascript:;" onclick="member_del(this,'1')"&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                   style="text-decoration:none">&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                    <i class="layui-icon">&#xe640;</i>&ndash;&gt;-->
+                    <!--&lt;!&ndash;                                </a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;                            </td>&ndash;&gt;-->
+                    <!--                        </tr>-->
+                    <!--                        </tbody>-->
+                    <!--                    </table>-->
+                    <!--                    <div id="page"></div>-->
 
-                                <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
-                                   style="text-decoration:none">
-                                    <i class="layui-icon">&#xe640;</i>
-                                </a>
-                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
+                    <table id="user" lay-filter="userTable"></table>
                 </div>
 
-                <div class="layui-card-body ">
-                    <div class="page">
-                        <div>
-                            <a class="prev" href="">&lt;&lt;</a>
-                            <a class="num" href="">1</a>
-                            <span class="current">2</span>
-                            <a class="num" href="">3</a>
-                            <a class="num" href="">489</a>
-                            <a class="next" href="">&gt;&gt;</a></div>
-                    </div>
-                </div>
+                <!--                <div class="layui-card-body ">-->
+                <!--                    <div class="page">-->
+                <!--                        <div>-->
+                <!--                            <a class="prev" href="">&lt;&lt;</a>-->
+                <!--                            <a class="num" href="">1</a>-->
+                <!--                            <span class="current">2</span>-->
+                <!--                            <a class="num" href="">3</a>-->
+                <!--                            <a class="num" href="">489</a>-->
+                <!--                            <a class="next" href="">&gt;&gt;</a></div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
 
             </div>
         </div>
@@ -156,9 +149,8 @@
         laydate.render({
             elem: '#end' //指定元素
         });
-
-
     });
+
 
     /*用户-添加*/
     function member_add(title, url, id, w, h) {
@@ -216,5 +208,68 @@
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
     }
+</script>
+
+
+<script type="text/javascript" th:inline="javascript">
+    layui.use('table', function () {
+        var table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#user'
+            , height: 500
+            , url: 'users' // 数据接口
+            , title: '用户表' // 文件导出等地方会用到
+            , page: true //开启分页
+            , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+            , limits: [5, 10, 20, 30, 40, 50, 100]
+            , cols: [[ //标题栏
+                {field: 'id', title: 'id', hide: true},
+                {field: 'username', title: '用户名', width: '10%'},
+                {field: 'phone', title: '手机', width: '15%'},
+                {field: 'email', title: '邮箱', width: '20%'},
+                {field: 'birthday', title: '生日', width: '10%'},
+                {field: 'address', title: '地址', width: '20%'},
+                {field: 'sex', title: '性别', templet: '#sex', width: '7%'},
+                {field: 'isDelete', title: '是否禁用', templet: '#isDelete', width: '8%'},
+                {title: '操作', templet: '#operation', width: '10%'}
+            ]]
+        });
+    });
+</script>
+
+<script>
+    layui.use('table', function () {
+        var table = layui.table;
+
+        //监听操作栏
+        table.on('tool(userTable)', function (obj) { //tool是工具条事件名，userTable是table原始容器的属性 lay-filter="对应的值"
+            var data = obj.data;    // 获得当前行数据
+            if (obj.event === 'del') {
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if (obj.event === 'edit') {
+                layer.alert('编辑行：<br>' + JSON.stringify(data))
+            }
+        });
+    });
+</script>
+
+<script type="text/html" id="isDelete">
+    <input type="checkbox" name="isDelete" value="{{d.isDelete}}" lay-skin="switch" disabled="disabled" {{d.isDelete== 1
+           ? 'checked' : ''}}>
+</script>
+
+<script type="text/html" id="sex">
+    <p type="text" name="isDelete" value="{{d.sex}}" lay-skin="switch" disabled="disabled">{{d.sex == 1 ? '男' :
+        '女'}}</p>
+</script>
+
+<script type="text/html" id="operation">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 </html>

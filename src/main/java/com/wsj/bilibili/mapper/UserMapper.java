@@ -14,6 +14,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface UserMapper {
+    Integer queryUserCount();
+
     List<UserDTO> queryAllUser();
 
     Integer queryUserById(Integer id);
