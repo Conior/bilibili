@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author wangshijian
@@ -17,6 +18,8 @@ public interface UserMapper {
     Integer queryUserCount();
 
     List<UserDTO> queryAllUser();
+
+    List<UserDTO> queryUserByPage(Map<String, Object> params);
 
     Integer queryUserById(Integer id);
 

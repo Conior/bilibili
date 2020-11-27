@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -25,6 +26,10 @@ public class UserService {
 
     public List<UserDTO> getAllUser() {
         return userMapper.queryAllUser();
+    }
+
+    public List<UserDTO> getUserByPage(Map<String, Object> params) {
+        return userMapper.queryUserByPage(params);
     }
 
     public Integer getUserById(int id) {

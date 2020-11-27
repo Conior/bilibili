@@ -13,6 +13,14 @@
         SELECT * FROM tbl_user
     </select>
 
+    <select id="queryUserByPage" parameterType="map" resultType="UserDTO">
+        SELECT * FROM tbl_user 
+        <if test="searchFiles != null">
+            where user_name LIKE #{searchFiles} OR email LIKE #{searchFiles}
+        </if>
+        limit #{start}, #{dataCount}
+    </select>
+
     <select id="queryUserById" parameterType="int" resultType="UserDTO">
         SELECT * FROM tbl_user where id = #{id}
     </select>
