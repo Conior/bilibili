@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -59,8 +60,9 @@ public class UserController {
 
 
     @SneakyThrows
-    @RequestMapping("user/add_user")
-    public String addUser(HttpServletRequest request, HttpSession session, Model model){
+    @PostMapping("addUser")
+    @ResponseBody
+    public Map<String, Object> addUser(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
@@ -78,13 +80,18 @@ public class UserController {
             birthday = sdf.parse(date);
         }
 
-        Integer user = userService.addUser(new UserDTO(null, username, password, email, phone, 0, birthday, address, sex,details));
-        if (null != user && 0 != user) {
-            model.addAttribute("msg","success");
+        Map<String, Object> dataMap = new HashMap<>();
+
+        Integer count = userService.addUser(new UserDTO(null, username, password, email, phone, 0, birthday, address, sex,details));
+        if (0 == count) {
+            dataMap.put("code",204);
+            dataMap.put("msg","未添加成功");
         } else {
-            model.addAttribute("msg","fail");
+            dataMap.put("code",200);
+            dataMap.put("msg","添加成功");
         }
-        return "/user/user-add";
+
+        return dataMap;
     }
 
     @RequestMapping("deleteUser")
@@ -93,8 +100,8 @@ public class UserController {
         Map<String, Object> dataMap = new HashMap<>();
 
         String userId = request.getParameter("userId");
-        Integer deleteCount = userService.deleteUserById(Integer.parseInt(userId));
-        if (0 == deleteCount){
+        Integer count = userService.deleteUserById(Integer.parseInt(userId));
+        if (0 == count){
             dataMap.put("code",204);
             dataMap.put("msg","未查找到该数据");
         } else {
