@@ -84,18 +84,18 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">地 址</label>
-                <div class="layui-inline">
-                    <select name="province" class="province" lay-search lay-filter="province">
+                <div class="layui-inline" id="provinceDiv">
+                    <select name="province" id="province" class="province" lay-search lay-filter="province">
                         <option value="">省份</option>
                     </select>
                 </div>
-                <div class="layui-inline">
-                    <select name="city" class="city" lay-search lay-filter="city">
+                <div class="layui-inline" id="cityDiv">
+                    <select name="city" id="city" class="city" lay-search lay-filter="city">
                         <option value="">地级市</option>
                     </select>
                 </div>
-                <div class="layui-inline">
-                    <select name="district" class="district" lay-search>
+                <div class="layui-inline" id="districtDiv">
+                    <select name="district" id="district" class="district" lay-search>
                         <option value="">县/区</option>
                     </select>
                 </div>
@@ -103,7 +103,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">启 用</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" name="switch" lay-skin="switch">
+                    <input type="checkbox" name="switch" id="switch" lay-skin="switch">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -116,7 +116,7 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">详 情</label>
                 <div class="layui-input-block">
-                    <textarea name="details" placeholder="请输入详情" class="layui-textarea"></textarea>
+                    <textarea name="details" id="details" placeholder="请输入详情" class="layui-textarea"></textarea>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -130,7 +130,6 @@
 </div>
 
 <script type="text/javascript" th:inline="javascript">
-
     // 日期控件
     layui.use(['laydate', 'form'], function () {
         var laydate = layui.laydate;
@@ -142,6 +141,7 @@
             elem: '#birthday' //指定元素
         });
 
+        // 提交数据
         form.on('submit(addUser)', function (tableData) {
             var checkResult = accountCheck();
 

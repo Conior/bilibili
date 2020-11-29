@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/index.css}">
 
     <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
-    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+<!--    <script th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>-->
     <script th:src="@{/lib/layui/layui.all.js}" charset="utf-8"></script>
     <script type="text/javascript" th:src="@{/js/index.js}"></script>
 
@@ -99,6 +99,8 @@
     table.on('tool(userTable)', function (obj) { //tool是工具条事件名，userTable是table原始容器的属性 lay-filter="对应的值"
         var currNum = $(".layui-laypage-skip").find("input").val();
         var data = obj.data;    // 获得当前行数据
+
+        // 删除用户
         if (obj.event === 'del') {
             layer.confirm('真的删除行么', function (index) {
                 $.ajax({
@@ -132,8 +134,80 @@
                     }
                 });
             });
-        } else if (obj.event === 'edit') {
-            layer.alert('编辑行：<br>' + JSON.stringify(data))
+        }
+        // 编辑用户
+        else if (obj.event === 'edit') {
+            //多窗口模式，层叠置顶
+            layer.open({
+                type: 2
+                , title: ['编辑用户', 'font-size:18px;']
+                , area: ['70%', '90%']
+                , shade: [0.4, '#393D49']   // 遮罩透明度
+                , move: false //拖拽模式
+                , content: '/user-add'
+                , success: function (layero, index) {
+                    let body = layer.getChildFrame('body',index);
+                    body.find('#username').val(data.username);
+                    body.find('#phone').val(data.phone);
+                    body.find('#email').val(data.email);
+                    body.find('#password').val(data.password);
+                    body.find('#details').val(data.details);
+                    // 省
+                    body.find('#provinceDiv').each(function() {
+                        // 勾选
+                        $(this).children("select").children("option").each(function() {
+                            // 判断需要对那个选项进行回显
+                            if (this.value == data.address.split("_")[0]) {
+                                // 进行回显
+                                $(this).attr("selected","selected");
+                                // return false;
+                            }
+                        });
+                        // 显示
+                        $(this).children("div").children("div").children("input").val(data.address.split("_")[0]);
+                    });
+                    // 市
+                    body.find('#cityDiv').each(function() {
+                        // 勾选
+                        $(this).children("select").children("option").each(function() {
+                            // 判断需要对那个选项进行回显
+                            if (this.value == data.address.split("_")[1]) {
+                                // 进行回显
+                                $(this).attr("selected","selected");
+                                // return false;
+                            }
+                        });
+                        // 显示
+                        $(this).children("div").children("div").children("input").val(data.address.split("_")[1]);
+                    });
+                    // 县
+                    body.find('#districtDiv').each(function() {
+                        // 勾选
+                        $(this).children("select").children("option").each(function() {
+                            // 判断需要对那个选项进行回显
+                            if (this.value == data.address.split("_")[2]) {
+                                // 进行回显
+                                $(this).attr("selected","selected");
+                                // return false;
+                            }
+                        });
+                        // 显示
+                        $(this).children("div").children("div").children("input").val(data.address.split("_")[2]);
+                    });
+
+                    // body.find('#city').val(data.city);
+                    // body.find('#district').val(data.district);
+                    // body.find('#switch').val(data.switch);
+                }
+                , end: function(){  // 回调
+                    table.reload('reloadUsers', {   // 渲染列表时的id参数
+                        method: 'post'
+                        , page: {
+                            curr: 1
+                        }
+                    });
+                }
+            });
         }
     });
 
