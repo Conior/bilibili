@@ -27,7 +27,7 @@ public class LoginController {
         return "login/login";
     }
 
-    @RequestMapping("user/login")
+//    @RequestMapping("user/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session,Model model){
         if (!StringUtils.isEmpty(username) && !StringUtils.isEmpty(password)){
             String userName = username.trim();

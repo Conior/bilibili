@@ -39,12 +39,12 @@ public class WebMVCConfig implements WebMvcConfigurer {
         registry.addViewController("/articletypeadd.html").setViewName("articletypeadd");
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginHandlerInceptorConfig()).addPathPatterns("/**")
-                .excludePathPatterns("/","/login","/login.html","/user/login","/user/signup", "/forgot-password", "/signup", "/welcome.html",
-                        "/css/**","/fonts/**","/images/**","/js/**","/lib/**");
-
-//        registry.addInterceptor(new UserHandlerInceptorConfig()).addPathPatterns("/user-add", "/user/add_user");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new LoginHandlerInceptorConfig()).addPathPatterns("/**")
+//                .excludePathPatterns("/","/login","/login.html","/user/login","/user/signup", "/forgot-password", "/signup", "/welcome.html",
+//                        "/css/**","/fonts/**","/images/**","/js/**","/lib/**");
+//
+////        registry.addInterceptor(new UserHandlerInceptorConfig()).addPathPatterns("/user-add", "/user/add_user");
+//    }
 }
