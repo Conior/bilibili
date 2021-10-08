@@ -14,7 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-    // 认证
+    // 授权
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
